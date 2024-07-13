@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxu0106ealx4o"]
+[gd_scene load_steps=4 format=3 uid="uid://dxu0106ealx4o"]
 
 [ext_resource type="Script" path="res://root/root_scene.gd" id="1_6lt17"]
+[ext_resource type="PackedScene" uid="uid://b3tg0clcfwau4" path="res://components/main_scene.tscn" id="2_1st06"]
 [ext_resource type="PackedScene" uid="uid://dcmiifvp1ol6o" path="res://root/music_layer.tscn" id="2_jv58k"]
 
 [node name="RootScene" type="Control"]
@@ -22,9 +23,11 @@ handle_input_locally = false
 size = Vector2i(1250, 680)
 render_target_update_mode = 4
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="MainScene" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_1st06")]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="UiLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UiLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

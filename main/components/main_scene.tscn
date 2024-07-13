@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://b3tg0clcfwau4"]
+
+[ext_resource type="Script" path="res://components/main_scene.gd" id="1_86s3e"]
+[ext_resource type="Script" path="res://components/Dropper.gd" id="2_felww"]
+[ext_resource type="Texture2D" uid="uid://dknkl7orldwly" path="res://art/sky_color_MAP.png" id="2_tn1u4"]
+[ext_resource type="Texture2D" uid="uid://5cnd30j6fwkq" path="res://art/clouds_MAP.png" id="3_br1ty"]
+[ext_resource type="Script" path="res://components/clouds.gd" id="4_gqewv"]
+[ext_resource type="Texture2D" uid="uid://dmrssxdib3x54" path="res://art/black_color_MAP.png" id="4_nv5lu"]
+[ext_resource type="Shader" path="res://components/repeat.gdshader" id="5_bb7x5"]
+[ext_resource type="Texture2D" uid="uid://dh84egslcnute" path="res://art/window_MAP.png" id="5_fy2ui"]
+[ext_resource type="PackedScene" uid="uid://bb1ci0vw5jpdg" path="res://components/player.tscn" id="8_foipt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uphdt"]
+shader = ExtResource("5_bb7x5")
+shader_parameter/speed = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l4lbs"]
+resource_local_to_scene = true
+shader = ExtResource("5_bb7x5")
+shader_parameter/speed = 0.03
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3uv1"]
+size = Vector2(148, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbesc"]
+size = Vector2(20, 91)
+
+[sub_resource type="Animation" id="Animation_ydo02"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3ati"]
+_data = {
+"idle": SubResource("Animation_ydo02")
+}
+
+[node name="MainScene" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_86s3e")
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(2.5, 1.25)
+
+[node name="Dropper" type="Node2D" parent="Node2D"]
+position = Vector2(0, -53)
+script = ExtResource("2_felww")
+
+[node name="sky" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_tn1u4")
+
+[node name="clouds" type="Polygon2D" parent="Node2D"]
+visible = false
+texture_repeat = 2
+position = Vector2(-110.287, -94.071)
+scale = Vector2(1.00137, 0.990116)
+texture = ExtResource("3_br1ty")
+polygon = PackedVector2Array(12, 19, 210.345, 17.2414, 210.345, 192.414, 8.27585, 195.172)
+uv = PackedVector2Array(-2.06897, 17.2414, 210.345, 17.2414, 210.345, 192.414, 14.4828, 198.621)
+script = ExtResource("4_gqewv")
+
+[node name="clouds3" type="Sprite2D" parent="Node2D"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_uphdt")
+rotation = 3.14159
+scale = Vector2(0.7, -0.7)
+texture = ExtResource("3_br1ty")
+
+[node name="clouds2" type="Sprite2D" parent="Node2D"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_l4lbs")
+texture = ExtResource("3_br1ty")
+region_enabled = true
+region_rect = Rect2(21.0691, 13.5, 161.864, 185)
+
+[node name="wall" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("4_nv5lu")
+
+[node name="window" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("5_fy2ui")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D" groups=["static"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(0.8, 80.8)
+shape = SubResource("RectangleShape2D_w3uv1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(70.8, 27.2)
+shape = SubResource("RectangleShape2D_bbesc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(-69.6, 26.4)
+shape = SubResource("RectangleShape2D_bbesc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q3ati")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(7, 10)
+zoom = Vector2(3, 3)
+
+[node name="Player" parent="." instance=ExtResource("8_foipt")]
