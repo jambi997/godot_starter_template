@@ -31,4 +31,9 @@ func _on_body_entered(body):
 
 
 func _on_area_entered(area):
+	if area.is_in_group("player"):
+		area.parent.gain_health()
+		queue_free()
+		pass
+		#player.
 	pass # Replace with function body.

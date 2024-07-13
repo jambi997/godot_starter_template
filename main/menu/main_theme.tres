@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://crs0bbp4j2u2f"]
+
+[ext_resource type="Texture2D" uid="uid://br1jdmtgbjsgg" path="res://art/UI_PLAY_menu-Sheet.png" id="1_8lwnh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo6bk"]
+
+[resource]
+Button/icons/basic = ExtResource("1_8lwnh")
+Button/styles/normal = SubResource("StyleBoxFlat_wo6bk")

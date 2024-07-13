@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxu0106ealx4o"]
+[gd_scene load_steps=7 format=3 uid="uid://dxu0106ealx4o"]
 
+[ext_resource type="Theme" uid="uid://crs0bbp4j2u2f" path="res://menu/main_theme.tres" id="1_2a6xn"]
 [ext_resource type="Script" path="res://root/root_scene.gd" id="1_6lt17"]
 [ext_resource type="PackedScene" uid="uid://b3tg0clcfwau4" path="res://components/main_scene.tscn" id="2_1st06"]
 [ext_resource type="PackedScene" uid="uid://dcmiifvp1ol6o" path="res://root/music_layer.tscn" id="2_jv58k"]
+[ext_resource type="Texture2D" uid="uid://br1jdmtgbjsgg" path="res://art/UI_PLAY_menu-Sheet.png" id="4_aijfi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2kb6w"]
+texture = ExtResource("4_aijfi")
+region_rect = Rect2(7.52309, 6.8281, 62.7703, 44.2897)
 
 [node name="RootScene" type="Control"]
 layout_mode = 3
@@ -11,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_2a6xn")
 script = ExtResource("1_6lt17")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -32,5 +39,22 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Menu" type="Control" parent="UiLayer/Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_2a6xn")
+
+[node name="Button" type="Button" parent="UiLayer/Control/Menu"]
+layout_mode = 0
+offset_left = -359.0
+offset_top = -96.0
+offset_right = -291.0
+offset_bottom = -42.0
+scale = Vector2(4.22964, 3.51939)
+theme_override_styles/normal = SubResource("StyleBoxTexture_2kb6w")
 
 [node name="music_layer" parent="." instance=ExtResource("2_jv58k")]

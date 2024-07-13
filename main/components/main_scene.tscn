@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3tg0clcfwau4"]
+[gd_scene load_steps=18 format=3 uid="uid://b3tg0clcfwau4"]
 
 [ext_resource type="Script" path="res://components/main_scene.gd" id="1_86s3e"]
 [ext_resource type="Script" path="res://components/Dropper.gd" id="2_felww"]
@@ -33,16 +33,225 @@ _data = {
 "idle": SubResource("Animation_ydo02")
 }
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfvam"]
+texture = ExtResource("5_fy2ui")
+texture_region_size = Vector2i(8, 8)
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+22:4/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+22:5/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+20:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+20:7/0 = 0
+21:7/0 = 0
+22:7/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+20:8/0 = 0
+21:8/0 = 0
+22:8/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+20:9/0 = 0
+21:9/0 = 0
+22:9/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+20:10/0 = 0
+21:10/0 = 0
+22:10/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+20:11/0 = 0
+21:11/0 = 0
+22:11/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+20:12/0 = 0
+21:12/0 = 0
+22:12/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+20:13/0 = 0
+21:13/0 = 0
+22:13/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+20:14/0 = 0
+21:14/0 = 0
+22:14/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+20:15/0 = 0
+21:15/0 = 0
+22:15/0 = 0
+4:16/0 = 0
+5:16/0 = 0
+20:16/0 = 0
+21:16/0 = 0
+22:16/0 = 0
+4:17/0 = 0
+5:17/0 = 0
+20:17/0 = 0
+21:17/0 = 0
+22:17/0 = 0
+4:18/0 = 0
+5:18/0 = 0
+20:18/0 = 0
+21:18/0 = 0
+22:18/0 = 0
+4:19/0 = 0
+5:19/0 = 0
+20:19/0 = 0
+21:19/0 = 0
+22:19/0 = 0
+4:20/0 = 0
+5:20/0 = 0
+6:20/0 = 0
+7:20/0 = 0
+8:20/0 = 0
+9:20/0 = 0
+10:20/0 = 0
+11:20/0 = 0
+12:20/0 = 0
+13:20/0 = 0
+14:20/0 = 0
+15:20/0 = 0
+16:20/0 = 0
+17:20/0 = 0
+18:20/0 = 0
+19:20/0 = 0
+20:20/0 = 0
+21:20/0 = 0
+22:20/0 = 0
+4:21/0 = 0
+5:21/0 = 0
+6:21/0 = 0
+7:21/0 = 0
+8:21/0 = 0
+9:21/0 = 0
+10:21/0 = 0
+11:21/0 = 0
+12:21/0 = 0
+13:21/0 = 0
+14:21/0 = 0
+15:21/0 = 0
+16:21/0 = 0
+17:21/0 = 0
+18:21/0 = 0
+19:21/0 = 0
+20:21/0 = 0
+21:21/0 = 0
+22:21/0 = 0
+4:22/0 = 0
+5:22/0 = 0
+6:22/0 = 0
+7:22/0 = 0
+8:22/0 = 0
+9:22/0 = 0
+10:22/0 = 0
+11:22/0 = 0
+12:22/0 = 0
+13:22/0 = 0
+14:22/0 = 0
+15:22/0 = 0
+16:22/0 = 0
+17:22/0 = 0
+18:22/0 = 0
+19:22/0 = 0
+20:22/0 = 0
+21:22/0 = 0
+22:22/0 = 0
+5:23/0 = 0
+6:23/0 = 0
+7:23/0 = 0
+8:23/0 = 0
+9:23/0 = 0
+10:23/0 = 0
+11:23/0 = 0
+12:23/0 = 0
+13:23/0 = 0
+14:23/0 = 0
+15:23/0 = 0
+16:23/0 = 0
+17:23/0 = 0
+18:23/0 = 0
+19:23/0 = 0
+20:23/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qqf7o"]
+tile_size = Vector2i(8, 8)
+sources/1 = SubResource("TileSetAtlasSource_rfvam")
+
 [node name="MainScene" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_86s3e")
 
 [node name="Node2D" type="Node2D" parent="."]
-scale = Vector2(2.5, 1.25)
+scale = Vector2(1.8, 1.25)
 
 [node name="Dropper" type="Node2D" parent="Node2D"]
 position = Vector2(0, -53)
 script = ExtResource("2_felww")
+drop_range = 90
+parent_path = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="Node2D/Dropper"]
+wait_time = 0.5
+autostart = true
 
 [node name="sky" type="Sprite2D" parent="Node2D"]
 texture = ExtResource("2_tn1u4")
@@ -84,11 +293,11 @@ position = Vector2(0.8, 80.8)
 shape = SubResource("RectangleShape2D_w3uv1")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2(70.8, 27.2)
+position = Vector2(67.2, 27.2)
 shape = SubResource("RectangleShape2D_bbesc")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2(-69.6, 26.4)
+position = Vector2(-66.8, 26.4)
 shape = SubResource("RectangleShape2D_bbesc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -101,3 +310,11 @@ position = Vector2(7, 10)
 zoom = Vector2(3, 3)
 
 [node name="Player" parent="." instance=ExtResource("8_foipt")]
+position = Vector2(0, -39)
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+tile_set = SubResource("TileSet_qqf7o")
+format = 2
+
+[connection signal="timeout" from="Node2D/Dropper/Timer" to="Node2D/Dropper" method="_on_timer_timeout"]
