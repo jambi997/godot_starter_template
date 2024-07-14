@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name base_bird
 
 @export var SPEED = 15.0
 @export var FLYING_SPEED = 25
@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var direction_timer = $DirectionTimer
 @onready var turn_timer = $TurnTimer
 @onready var bullet = load("res://components/bird_poop.tscn")
+var descend = false
 var alive = true
 var direction = 1
 #var colorr = Color(1.0,randf_range(0.8,1),randf_range(0.7,1))
@@ -67,6 +68,10 @@ func _physics_process(delta):
 			if direction_timer.is_stopped():
 				direction_timer.start()
 			if direction:
+				if descend:
+					velocity.y =(FLYING_SPEED*1)
+				else:
+					velocity.y=0
 				velocity.x = (direction * FLYING_SPEED)
 				anim_player.play("fly")
 	if velocity.length()>0:

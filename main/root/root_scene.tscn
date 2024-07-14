@@ -71,10 +71,10 @@ theme = ExtResource("1_2a6xn")
 
 [node name="Button" type="Button" parent="UiLayer/Control/Menu"]
 layout_mode = 0
-offset_left = 375.0
-offset_top = 168.0
-offset_right = 461.0
-offset_bottom = 252.0
+offset_left = 376.0
+offset_top = 180.0
+offset_right = 462.0
+offset_bottom = 264.0
 scale = Vector2(4.22964, 3.51939)
 theme_override_styles/normal = SubResource("StyleBoxTexture_2kb6w")
 theme_override_styles/hover = SubResource("StyleBoxTexture_vbob7")
@@ -97,7 +97,6 @@ text = "0"
 script = ExtResource("5_561hi")
 
 [node name="Death" type="Control" parent="UiLayer/Control"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -105,10 +104,10 @@ offset_bottom = 40.0
 [node name="Retry" type="Button" parent="UiLayer/Control/Death"]
 z_index = 200
 layout_mode = 0
-offset_left = 495.0
-offset_top = 299.0
-offset_right = 649.0
-offset_bottom = 398.0
+offset_left = 490.0
+offset_top = 298.0
+offset_right = 644.0
+offset_bottom = 397.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ghd6g")
 theme_override_styles/hover = SubResource("StyleBoxTexture_vf0l2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_saon4")
@@ -117,9 +116,9 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_saon4")
 z_index = 400
 texture_filter = 1
 layout_mode = 0
-offset_left = 495.0
+offset_left = 477.0
 offset_top = 392.0
-offset_right = 587.0
+offset_right = 569.0
 offset_bottom = 415.0
 scale = Vector2(2, 2)
 text = "Score: 434"
@@ -132,7 +131,7 @@ texture = ExtResource("6_pjpi0")
 
 [node name="Sprite2D" type="Sprite2D" parent="UiLayer/Control/Death"]
 texture_filter = 1
-position = Vector2(576, 261)
+position = Vector2(574, 236)
 scale = Vector2(2, 2)
 texture = ExtResource("12_ba6vg")
 

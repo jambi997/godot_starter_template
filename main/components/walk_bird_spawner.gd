@@ -11,12 +11,13 @@ func _ready():
 	pass # Replace with function body.
 
 func spawn_bird():
-	var tbird = bird.instantiate()
+	var tbird:base_bird = bird.instantiate()
 	tbird.global_position = global_position
 	tbird.state=bird_state
 	if bird_state=="FLY":
 		tbird.position.y+=randi_range(-5,5)
 		tbird.position.x+=randi_range(-40,40)
+		tbird.descend=true
 		#var rscale = randi_range(0.2,0.5)
 		#tbird.scale=Vector2(rscale,rscale)
 		Autoload.flying_birds +=1
