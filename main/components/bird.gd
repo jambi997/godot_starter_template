@@ -48,6 +48,8 @@ func _physics_process(delta):
 		move_and_slide()
 	if !check_animations():
 		return
+	if velocity.length()<2:
+		direction*=-1
 	match state:
 		"WALK":
 			#if global_position<player.global_position:

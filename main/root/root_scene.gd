@@ -12,6 +12,8 @@ var current_ui_scene_name = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Autoload.root_scene=self
+	death.hide()
+	menu.show()
 	pass # Replace with function body.
 
 func pause_game():
