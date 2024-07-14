@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bmlftrw1avqpa" path="res://art/BIG_droplet_animations-Sheet.png" id="5_dqo0s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_utyyj"]
-radius = 5.09902
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_olpwg"]
 radius = 7.0
@@ -757,8 +757,10 @@ collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_5tbp0")
 JUMP_VELOCITY = -300.0
+size = "LARGE"
 
 [node name="small" type="Sprite2D" parent="."]
+visible = false
 y_sort_enabled = true
 position = Vector2(1, -11)
 texture = ExtResource("3_exjn2")
@@ -772,7 +774,6 @@ hframes = 32
 frame = 1
 
 [node name="large" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, -12)
 texture = ExtResource("5_dqo0s")
 hframes = 28

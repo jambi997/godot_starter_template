@@ -15,7 +15,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var bullet = load("res://components/bird_poop.tscn")
 var alive = true
 var direction = 1
+#var colorr = Color(1.0,randf_range(0.8,1),randf_range(0.7,1))
 func _ready():
+	#self.modulate = colorr
 	pass
 
 func check_animations():
@@ -25,6 +27,8 @@ func check_animations():
 		return true
 
 func turn_to_player():
+	if !is_instance_valid(Autoload.player):
+		return
 	if global_position<player.global_position:
 		direction=1
 	else:
@@ -32,6 +36,12 @@ func turn_to_player():
 
 func _physics_process(delta):
 	# Add the gravity.
+	if !is_instance_valid(player):
+		#die()
+		queue_free()
+		Autoload.flying_birds=0
+		Autoload.ground_birds=0
+		return
 	if anim_player.current_animation=="fall":
 		velocity.y += gravity/2 * delta
 		z_index=-100
@@ -70,11 +80,11 @@ func die():
 	match state:
 		"WALK":
 			anim_player.play("death")
-			Autoload.score+=1
+			Autoload.score+=3
 			Autoload.ground_birds-=1
 		"FLY":
 			anim_player.play("fall")
-			Autoload.score+=2
+			Autoload.score+=5
 			Autoload.flying_birds-=1
 	alive = false
 	pass
@@ -125,5 +135,5 @@ func _on_timer_timeout():
 
 func _on_turn_timer_timeout():
 	turn_to_player()
-	turn_timer.wait_time=randi_range(0.1,20)
+	turn_timer.wait_time=randi_range(1,25)
 	pass # Replace with function body.

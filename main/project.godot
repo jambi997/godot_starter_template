@@ -22,7 +22,6 @@ Autoload="*res://root/autoload.gd"
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [input]
 

@@ -1,13 +1,13 @@
 extends Marker2D
 
 @onready var timer = $Timer
-@export var spawn_range=15
+@export var spawn_range=20
 @onready var bird = load("res://components/bird.tscn")
 @export_enum("WALK","FLY") var bird_state="WALK"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time=randi_range(spawn_range/3,spawn_range)
-	timer.start()
+	#timer.start()
 	pass # Replace with function body.
 
 func spawn_bird():
@@ -29,7 +29,7 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	if Autoload.player.alive:
+	if is_instance_valid(Autoload.player) and Autoload.player.alive:
 		if bird_state=="FLY" and Autoload.flying_birds>=2:
 			return
 		if bird_state=="WALK" and Autoload.ground_birds>=3:

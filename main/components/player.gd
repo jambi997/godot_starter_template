@@ -24,7 +24,8 @@ var alive = true
 }
 
 func _ready():
-	size_chooser.play("SMALL")
+	#size_chooser.play("SMALL")
+	switch_size("SMALL")
 	Autoload.player=self
 
 func check_animations():
@@ -37,8 +38,8 @@ func switch_size(s):
 	size_chooser.play(s)
 	match size:
 		"SMALL":
-			JUMP_VELOCITY=-400
-			SPEED=150
+			JUMP_VELOCITY=-350
+			SPEED=200
 		"MEDIUM":
 			JUMP_VELOCITY=-250
 			SPEED=100
@@ -99,9 +100,9 @@ func take_damage(damage):
 	pass
 
 func _physics_process(delta):
-	if not is_on_floor():
+	if not is_on_floor() and !alive:
 		velocity.y += gravity * delta
-		
+		move_and_slide()
 	if !alive or !check_animations():
 		return
 	var direction = Input.get_axis("left", "right")
@@ -111,6 +112,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	# Add the gravity.
 	if not is_on_floor() and check_animations():
+		velocity.y += gravity * delta
 		anim_players[size].play("jump")
 	elif check_animations():
 		if velocity.length()>0:
@@ -131,11 +133,13 @@ func _physics_process(delta):
 		shoot("vertical")
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-
 	move_and_slide()
 
 
 func _on_small_player_animation_finished(anim_name):
+	if anim_name == "die":
+		Autoload.root_scene.game_over()
+		queue_free()
 	#if anim_name=="turn_up":
 		#size="MEDIUM"
 	pass # Replace with function body.
