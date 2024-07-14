@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3tg0clcfwau4"]
+[gd_scene load_steps=25 format=3 uid="uid://b3tg0clcfwau4"]
 
 [ext_resource type="Script" path="res://components/main_scene.gd" id="1_86s3e"]
 [ext_resource type="Script" path="res://components/Dropper.gd" id="2_felww"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" path="res://components/walk_bird_spawner.gd" id="9_8pvwe"]
 [ext_resource type="Texture2D" uid="uid://d04s5fnu2idw7" path="res://art/new_window/floorrrrr_MAP.png" id="9_ung1x"]
 [ext_resource type="Script" path="res://components/Redirceter.gd" id="10_3hrob"]
+[ext_resource type="Texture2D" uid="uid://cbbclb6e3t4ro" path="res://art/new_window/LEFT_WOOD_MAP.png" id="10_tslu3"]
+[ext_resource type="Texture2D" uid="uid://cjr3tv0q3fh5l" path="res://art/new_window/RIGHT_WOOD_MAP.png" id="11_xuee2"]
+[ext_resource type="Texture2D" uid="uid://c5683kq3jqi3e" path="res://art/new_window/TOP_WOOD_MAP.png" id="12_mutsl"]
 [ext_resource type="Script" path="res://components/bird_lander.gd" id="12_q5115"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uphdt"]
@@ -295,13 +298,33 @@ position = Vector2(3, -180)
 texture = ExtResource("7_r3631")
 
 [node name="window" type="Sprite2D" parent="Node2D"]
+visible = false
 z_index = 100
 texture = ExtResource("8_0823a")
 
 [node name="window2" type="Sprite2D" parent="Node2D"]
 texture = ExtResource("9_ung1x")
 
+[node name="window3" type="Sprite2D" parent="Node2D"]
+z_index = 100
+position = Vector2(-20.7692, 5)
+scale = Vector2(0.7, 1)
+texture = ExtResource("10_tslu3")
+
+[node name="window4" type="Sprite2D" parent="Node2D"]
+z_index = 100
+position = Vector2(20.7692, 5)
+scale = Vector2(0.7, 1)
+texture = ExtResource("11_xuee2")
+
+[node name="window5" type="Sprite2D" parent="Node2D"]
+z_index = 100
+position = Vector2(-5.96046e-08, 6)
+scale = Vector2(0.94, 1)
+texture = ExtResource("12_mutsl")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="Node2D" groups=["static"]]
+visible = false
 z_index = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
@@ -309,6 +332,7 @@ position = Vector2(1.1111, 80.8)
 shape = SubResource("RectangleShape2D_w3uv1")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Node2D" groups=["static"]]
+visible = false
 collision_layer = 4
 collision_mask = 4
 
@@ -342,6 +366,7 @@ bird_state = "FLY"
 [node name="Timer" type="Timer" parent="Node2D/walk_bird_spawner3"]
 
 [node name="Redirceter" type="Area2D" parent="Node2D"]
+visible = false
 z_index = 100
 script = ExtResource("10_3hrob")
 
@@ -350,6 +375,7 @@ position = Vector2(-82, -36)
 shape = SubResource("RectangleShape2D_dqh2e")
 
 [node name="Redirceter2" type="Area2D" parent="Node2D"]
+visible = false
 z_index = 100
 position = Vector2(134.444, 1.6)
 script = ExtResource("10_3hrob")
@@ -359,6 +385,7 @@ position = Vector2(-52.4444, -22.6)
 shape = SubResource("RectangleShape2D_dqh2e")
 
 [node name="Redirceter3" type="Area2D" parent="Node2D"]
+visible = false
 z_index = 100
 position = Vector2(206.923, 79)
 script = ExtResource("10_3hrob")
@@ -368,6 +395,7 @@ position = Vector2(-83.8462, -45)
 shape = SubResource("RectangleShape2D_dqh2e")
 
 [node name="Redirceter4" type="Area2D" parent="Node2D"]
+visible = false
 z_index = 100
 position = Vector2(-70, 80)
 script = ExtResource("10_3hrob")
@@ -377,6 +405,7 @@ position = Vector2(-50, -45)
 shape = SubResource("RectangleShape2D_dqh2e")
 
 [node name="bird_lander" type="Area2D" parent="Node2D"]
+visible = false
 script = ExtResource("12_q5115")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/bird_lander"]

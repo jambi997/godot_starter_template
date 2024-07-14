@@ -8,11 +8,11 @@
 [ext_resource type="Script" path="res://root/Label.gd" id="5_561hi"]
 [ext_resource type="Texture2D" uid="uid://bg3soxe7e0r1y" path="res://art/buttons/play2.png" id="5_tkf1p"]
 [ext_resource type="Texture2D" uid="uid://btyx22qka6fjc" path="res://art/buttons/play3.png" id="6_0vnu2"]
-[ext_resource type="Texture2D" uid="uid://ole0h0rby1sc" path="res://art/death_screen.png" id="6_mcon7"]
 [ext_resource type="Texture2D" uid="uid://dym25kicx6dd0" path="res://art/sky2_color_MAP (1).png" id="6_pjpi0"]
-[ext_resource type="Texture2D" uid="uid://djeg3hm6okl2t" path="res://art/buttons/retry1.png" id="7_21o1e"]
-[ext_resource type="Texture2D" uid="uid://c824k2ijbnb5m" path="res://art/buttons/retry2.png" id="8_nbfle"]
-[ext_resource type="Texture2D" uid="uid://cmpldvo3yjfs6" path="res://art/buttons/retry3.png" id="9_k8ffv"]
+[ext_resource type="Texture2D" uid="uid://crbdn34v7h55h" path="res://art/buttons/THIS_IS_BUTTON1_button.png" id="8_2d4nf"]
+[ext_resource type="Texture2D" uid="uid://b3usmedtn1q0u" path="res://art/buttons/THIS_IS_BUTTON222_button.png" id="9_4qleb"]
+[ext_resource type="Texture2D" uid="uid://dimrtcj3qju6l" path="res://art/buttons/THIS_IS_BUTTON33333_button.png" id="10_d4n2k"]
+[ext_resource type="Texture2D" uid="uid://l53q8osqyuog" path="res://art/buttons/DEATH_new_SCREEN.png" id="12_ba6vg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2kb6w"]
 texture = ExtResource("4_bm678")
@@ -24,13 +24,13 @@ texture = ExtResource("5_tkf1p")
 texture = ExtResource("6_0vnu2")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghd6g"]
-texture = ExtResource("9_k8ffv")
+texture = ExtResource("8_2d4nf")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vf0l2"]
-texture = ExtResource("7_21o1e")
+texture = ExtResource("9_4qleb")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_saon4"]
-texture = ExtResource("8_nbfle")
+texture = ExtResource("10_d4n2k")
 
 [node name="RootScene" type="Control"]
 layout_mode = 3
@@ -97,7 +97,6 @@ text = "0"
 script = ExtResource("5_561hi")
 
 [node name="Death" type="Control" parent="UiLayer/Control"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -113,6 +112,18 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_ghd6g")
 theme_override_styles/hover = SubResource("StyleBoxTexture_vf0l2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_saon4")
 
+[node name="Label2" type="Label" parent="UiLayer/Control/Death"]
+z_index = 400
+texture_filter = 1
+layout_mode = 0
+offset_left = 495.0
+offset_top = 392.0
+offset_right = 587.0
+offset_bottom = 415.0
+scale = Vector2(2, 2)
+text = "Score: 434"
+script = ExtResource("5_561hi")
+
 [node name="Sprite2D2" type="Sprite2D" parent="UiLayer/Control/Death"]
 position = Vector2(572, 296)
 scale = Vector2(5, 5)
@@ -122,7 +133,7 @@ texture = ExtResource("6_pjpi0")
 texture_filter = 1
 position = Vector2(576, 261)
 scale = Vector2(2, 2)
-texture = ExtResource("6_mcon7")
+texture = ExtResource("12_ba6vg")
 
 [node name="music_layer" parent="." instance=ExtResource("2_jv58k")]
 
