@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3tg0clcfwau4"]
+[gd_scene load_steps=19 format=3 uid="uid://b3tg0clcfwau4"]
 
 [ext_resource type="Script" path="res://components/main_scene.gd" id="1_86s3e"]
 [ext_resource type="Script" path="res://components/Dropper.gd" id="2_felww"]
@@ -9,6 +9,8 @@
 [ext_resource type="Shader" path="res://components/repeat.gdshader" id="5_bb7x5"]
 [ext_resource type="Texture2D" uid="uid://dh84egslcnute" path="res://art/window_MAP.png" id="5_fy2ui"]
 [ext_resource type="PackedScene" uid="uid://bb1ci0vw5jpdg" path="res://components/player.tscn" id="8_foipt"]
+[ext_resource type="Script" path="res://components/walk_bird_spawner.gd" id="9_8pvwe"]
+[ext_resource type="Script" path="res://components/Redirceter.gd" id="10_3hrob"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uphdt"]
 shader = ExtResource("5_bb7x5")
@@ -20,18 +22,13 @@ shader = ExtResource("5_bb7x5")
 shader_parameter/speed = 0.03
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3uv1"]
-size = Vector2(148, 21)
+size = Vector2(392.222, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbesc"]
 size = Vector2(20, 91)
 
-[sub_resource type="Animation" id="Animation_ydo02"]
-resource_name = "idle"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3ati"]
-_data = {
-"idle": SubResource("Animation_ydo02")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqh2e"]
+size = Vector2(20, 46)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfvam"]
 texture = ExtResource("5_fy2ui")
@@ -250,7 +247,7 @@ drop_range = 90
 parent_path = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="Node2D/Dropper"]
-wait_time = 0.5
+wait_time = 2.0
 autostart = true
 
 [node name="sky" type="Sprite2D" parent="Node2D"]
@@ -289,21 +286,54 @@ texture = ExtResource("5_fy2ui")
 [node name="StaticBody2D" type="StaticBody2D" parent="Node2D" groups=["static"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2(0.8, 80.8)
+position = Vector2(1.1111, 80.8)
 shape = SubResource("RectangleShape2D_w3uv1")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Node2D"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/StaticBody2D2"]
 position = Vector2(67.2, 27.2)
 shape = SubResource("RectangleShape2D_bbesc")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/StaticBody2D2"]
 position = Vector2(-66.8, 26.4)
 shape = SubResource("RectangleShape2D_bbesc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_q3ati")
-}
+[node name="walk_bird_spawner" type="Marker2D" parent="Node2D"]
+position = Vector2(67.2222, 57.6)
+script = ExtResource("9_8pvwe")
+
+[node name="Timer" type="Timer" parent="Node2D/walk_bird_spawner"]
+
+[node name="walk_bird_spawner2" type="Marker2D" parent="Node2D"]
+position = Vector2(-67.7778, 56)
+script = ExtResource("9_8pvwe")
+
+[node name="Timer" type="Timer" parent="Node2D/walk_bird_spawner2"]
+
+[node name="walk_bird_spawner3" type="Marker2D" parent="Node2D"]
+position = Vector2(0, -23.2)
+script = ExtResource("9_8pvwe")
+bird_state = "FLY"
+
+[node name="Timer" type="Timer" parent="Node2D/walk_bird_spawner3"]
+
+[node name="Redirceter" type="Area2D" parent="Node2D"]
+script = ExtResource("10_3hrob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Redirceter"]
+position = Vector2(-67.7778, -32.6)
+shape = SubResource("RectangleShape2D_dqh2e")
+
+[node name="Redirceter2" type="Area2D" parent="Node2D"]
+position = Vector2(134.444, 1.6)
+script = ExtResource("10_3hrob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Redirceter2"]
+position = Vector2(-67.7778, -32.6)
+shape = SubResource("RectangleShape2D_dqh2e")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(7, 10)
@@ -318,3 +348,8 @@ tile_set = SubResource("TileSet_qqf7o")
 format = 2
 
 [connection signal="timeout" from="Node2D/Dropper/Timer" to="Node2D/Dropper" method="_on_timer_timeout"]
+[connection signal="timeout" from="Node2D/walk_bird_spawner/Timer" to="Node2D/walk_bird_spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="Node2D/walk_bird_spawner2/Timer" to="Node2D/walk_bird_spawner2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Node2D/walk_bird_spawner3/Timer" to="Node2D/walk_bird_spawner3" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Node2D/Redirceter" to="Node2D/Redirceter" method="_on_body_entered"]
+[connection signal="body_entered" from="Node2D/Redirceter2" to="Node2D/Redirceter2" method="_on_body_entered"]

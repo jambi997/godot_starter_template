@@ -31,7 +31,7 @@ func _on_body_entered(body):
 
 
 func _on_area_entered(area):
-	if area.is_in_group("player"):
+	if area.is_in_group("player") and Autoload.player.size!="LARGE":
 		area.parent.gain_health()
 		queue_free()
 		pass
