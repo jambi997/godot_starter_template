@@ -20,7 +20,6 @@ func spawn_drop():
 func _process(delta):
 	pass
 
-
 func _on_timer_timeout():
 	spawn_drop()
 	timer.wait_time=randi_range(0.5,3)

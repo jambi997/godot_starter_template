@@ -24,6 +24,9 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	spawn_bird()
-	timer.wait_time=randi_range(2,spawn_range)
+	if Autoload.player.alive:
+		spawn_bird()
+		timer.wait_time=randi_range(2,spawn_range)
+	else:
+		timer.stop()
 	pass # Replace with function body.
