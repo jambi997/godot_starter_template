@@ -22,5 +22,5 @@ func _process(delta):
 
 func _on_timer_timeout():
 	spawn_drop()
-	timer.wait_time=randi_range(0.5,3)
+	timer.wait_time=randi_range(0.5,5)
 	pass # Replace with function body.

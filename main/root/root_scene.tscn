@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxu0106ealx4o"]
+[gd_scene load_steps=8 format=3 uid="uid://dxu0106ealx4o"]
 
 [ext_resource type="Theme" uid="uid://crs0bbp4j2u2f" path="res://menu/main_theme.tres" id="1_2a6xn"]
 [ext_resource type="Script" path="res://root/root_scene.gd" id="1_6lt17"]
 [ext_resource type="PackedScene" uid="uid://b3tg0clcfwau4" path="res://components/main_scene.tscn" id="2_1st06"]
 [ext_resource type="PackedScene" uid="uid://dcmiifvp1ol6o" path="res://root/music_layer.tscn" id="2_jv58k"]
 [ext_resource type="Texture2D" uid="uid://br1jdmtgbjsgg" path="res://art/UI_PLAY_menu-Sheet.png" id="4_aijfi"]
+[ext_resource type="Script" path="res://root/Label.gd" id="5_561hi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2kb6w"]
 texture = ExtResource("4_aijfi")
@@ -27,7 +28,7 @@ offset_bottom = 40.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1250, 680)
+size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="MainScene" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_1st06")]
@@ -56,5 +57,21 @@ offset_right = -291.0
 offset_bottom = -42.0
 scale = Vector2(4.22964, 3.51939)
 theme_override_styles/normal = SubResource("StyleBoxTexture_2kb6w")
+
+[node name="GameUi" type="Control" parent="UiLayer/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UiLayer/Control/GameUi"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 29.0
+offset_top = 23.0
+offset_right = 71.0
+offset_bottom = 46.0
+scale = Vector2(2, 2)
+text = "0"
+script = ExtResource("5_561hi")
 
 [node name="music_layer" parent="." instance=ExtResource("2_jv58k")]

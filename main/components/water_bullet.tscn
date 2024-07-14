@@ -45,7 +45,7 @@ _data = {
 }
 
 [node name="WaterBullet" type="Area2D" groups=["bullet"]]
-z_index = 100
+z_index = 10
 script = ExtResource("1_1wwqd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

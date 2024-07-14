@@ -37,11 +37,14 @@ func switch_size(s):
 	size_chooser.play(s)
 	match size:
 		"SMALL":
-			pass
+			JUMP_VELOCITY=-400
+			SPEED=150
 		"MEDIUM":
-			pass
-		"HIGH":
-			pass
+			JUMP_VELOCITY=-250
+			SPEED=100
+		"LARGE":
+			SPEED=50
+			JUMP_VELOCITY=-100
 	sprites[size].scale = sprites[last_size].scale
 	last_size=size
 
@@ -82,6 +85,8 @@ func gain_health():
 			pass
 
 func take_damage(damage):
+	if !alive:
+		return
 	match size:
 		"SMALL":
 			die()

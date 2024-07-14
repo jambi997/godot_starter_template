@@ -34,6 +34,7 @@ func _on_area_entered(area):
 	if area.is_in_group("player") and Autoload.player.size!="LARGE":
 		area.parent.gain_health()
 		queue_free()
+		Autoload.score+=5
 		pass
 		#player.
 	pass # Replace with function body.
