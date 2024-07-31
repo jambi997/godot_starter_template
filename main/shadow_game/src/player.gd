@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var alive = true
-@export var start_health = 10
+@export var start_health = 5
 @onready var health = start_health
 @export var start_speed = 100
 @export var start_accel = 500
@@ -11,14 +11,18 @@ var alive = true
 @export var animation_player : AnimationPlayer
 @onready var flamewalk_timer = $flamewalk_timer
 @onready var flamespawn_timer= $flamespawn_timer
+@onready var hide_timer = $hide_timer
 @export var player_texture : Sprite2D
 @onready var start_scale =player_texture.scale.x
 @onready var firebolt = load("res://shadow_game/src/fireball.tscn")
 @onready var firewalk = load("res://shadow_game/src/fire_trail.tscn")
+@onready var waterpush = load("res://shadow_game/src/waterpush.tscn")
+@onready var freezeezone = load("res://shadow_game/src/freezee.tscn")
 var next_spell = []
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var state = rest
+var detectable = true
 
 func rest():
 	pass
@@ -38,7 +42,7 @@ func die():
 
 func take_damage(damage):
 	health-=damage
-	if health<0:
+	if health<=0:
 		alive=false
 		die()
 
@@ -47,7 +51,7 @@ func _physics_process(delta):
 	if speed<start_speed:
 		speed+=1
 	if speed>start_speed:
-		speed*=0.9999
+		speed*=0.999
 	# Add the gravity.
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -64,7 +68,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func cook_spell(spell):
-	speed*=0.3
+	speed*=0.2
 	match spell:
 		"fire":
 			particles.set_modulate(Color(1, 0, 0))
@@ -95,7 +99,7 @@ func fire_spell():
 		["fire","fire"]:
 			fireball()
 		["wind","wind"]:
-			speed*=2
+			speed*=5
 		["fire","wind"]:
 			flamewalk_on()
 		["wind","fire"]:
@@ -107,19 +111,33 @@ func fire_spell():
 		["wind","water"]:
 			freezee()
 		["fire","water"]:
-			push()
+			smoke_hide()
 		["water","fire"]:
-			push()
+			smoke_hide()
 	next_spell=[]
 	
 
-func push():
+func smoke_hide():
+	detectable=false
+	hide_timer.start()
+	player_texture.visible=false
 	pass
 
+func smoke_hide_end():
+	detectable=true
+	player_texture.visible=true
+
 func freezee():
+	var tfreezee = freezeezone.instantiate()
+	tfreezee.position = global_position
+	tfreezee.look_at(get_global_mouse_position())
+	Autoload.world.add_child(tfreezee)
 	pass
 
 func shoot_water():
+	var tpush = waterpush.instantiate()
+	add_child(tpush)
+	tpush.look_at(get_global_mouse_position())
 	pass
 
 func flamewalk():
@@ -164,4 +182,9 @@ func _on_flamewalk_timer_timeout():
 
 func _on_flamespawn_timer_timeout():
 	flamewalk()
+	pass # Replace with function body.
+
+
+func _on_hide_timer_timeout():
+	smoke_hide_end()
 	pass # Replace with function body.

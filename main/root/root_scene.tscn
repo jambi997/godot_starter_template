@@ -103,7 +103,6 @@ text = "0"
 script = ExtResource("5_561hi")
 
 [node name="Death" type="Control" parent="UiLayer/Control"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -120,6 +119,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_vf0l2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_saon4")
 
 [node name="Label2" type="Label" parent="UiLayer/Control/Death"]
+visible = false
 z_index = 400
 texture_filter = 1
 layout_mode = 0
@@ -137,6 +137,7 @@ scale = Vector2(5, 5)
 texture = ExtResource("6_pjpi0")
 
 [node name="Sprite2D" type="Sprite2D" parent="UiLayer/Control/Death"]
+visible = false
 texture_filter = 1
 position = Vector2(574, 236)
 scale = Vector2(2, 2)

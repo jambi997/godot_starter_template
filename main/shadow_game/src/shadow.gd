@@ -23,6 +23,8 @@ func _physics_process(delta):
 	if !alive or !is_instance_valid(target):
 		return
 	#print("helo")
+	if speed<start_speed:
+		speed+=0.1
 	var distance = global_position.distance_to(target.global_position)
 	#var direction = global_position.direction_to(target.global_position)
 	var direction = global_position.direction_to(Vector2(target.global_position.x,target.global_position.y))
@@ -35,7 +37,8 @@ func _physics_process(delta):
 	elif !check_animations():
 		animation_player.play("idle")
 	#if !check_animations():
-	velocity = velocity.move_toward(direction * speed, delta * accel)
+	if target.detectable==true:
+		velocity = velocity.move_toward(direction * speed, delta * accel)
 	move_and_slide()
 	dir.scale.x = sign(direction.x)
 
@@ -56,4 +59,9 @@ func _on_area_2d_area_entered(area):
 
 func _on_timer_timeout():
 	queue_free()
+	pass # Replace with function body.
+
+
+func _on_timer_2_timeout():
+	speed+=10
 	pass # Replace with function body.

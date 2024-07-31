@@ -5,13 +5,13 @@ class_name base_game
 @onready var shadow = load("res://shadow_game/src/shadow.tscn")
 @onready var torch = load("res://shadow_game/src/torch.tscn")
 var entities=[]
-var spawningscount=1
+var spawningscount=5
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Autoload.world=self
 	pass # Replace with function body.
 
-func spawner(spawnable,count,range=500):
+func spawner(spawnable,count,range=1000):
 	#var range = 500
 	for i in count:
 		var t_spawn = spawnable.instantiate()
@@ -30,10 +30,14 @@ func start_game():
 	entities.append(t_player)
 	spawner(shadow,1)
 	spawner(torch,500,10000)
+	spawningscount=5
 	pass # Replace with function body.
 
 
 func _on_timer_timeout():
+	if !is_instance_valid(Autoload.player):
+		spawningscount=5
+		return
 	spawner(shadow,randf_range(1,spawningscount))
 	spawner(torch,1,1000)
 	spawningscount+=1

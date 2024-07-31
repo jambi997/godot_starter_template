@@ -8,17 +8,21 @@
 radius = 29.2746
 
 [node name="Torch" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_o7me4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -16)
 texture = ExtResource("1_muh01")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, -14)
+position = Vector2(0, -31)
 texture = ExtResource("2_3troj")
 
 [node name="Area2D" type="Area2D" parent="." groups=["ligth"]]
+position = Vector2(0, -17)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -14)

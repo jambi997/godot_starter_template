@@ -20,28 +20,35 @@ scale_max = 10.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "player_texture") groups=["player"]]
 y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_0riro")
 animation_player = NodePath("AnimationPlayer")
 player_texture = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-1, -19)
 texture = ExtResource("1_fwy6u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, -19)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 y_sort_enabled = true
+position = Vector2(-1, -19)
 energy = 0.2
 texture = ExtResource("3_alpmf")
 texture_scale = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
+position = Vector2(-1, -5)
 shape = SubResource("RectangleShape2D_drxnf")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1, -19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 0.75)
@@ -49,6 +56,7 @@ shape = SubResource("RectangleShape2D_mfooc")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 y_sort_enabled = true
+position = Vector2(-1, -19)
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_hm7cf")
@@ -61,6 +69,11 @@ one_shot = true
 [node name="flamespawn_timer" type="Timer" parent="."]
 wait_time = 0.3
 
+[node name="hide_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="flamewalk_timer" to="." method="_on_flamewalk_timer_timeout"]
 [connection signal="timeout" from="flamespawn_timer" to="." method="_on_flamespawn_timer_timeout"]
+[connection signal="timeout" from="hide_timer" to="." method="_on_hide_timer_timeout"]

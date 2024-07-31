@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck8sp2uosebii"]
+
+[ext_resource type="Script" path="res://shadow_game/src/waterpush.gd" id="1_d1sqm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5oicu"]
+size = Vector2(447.5, 38)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rolhx"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 10, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+
+[node name="Waterpush" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_d1sqm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(217.25, 0)
+shape = SubResource("RectangleShape2D_5oicu")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+modulate = Color(3.08037e-06, 0.787346, 0.973251, 1)
+z_index = -1
+y_sort_enabled = true
+position = Vector2(1, 0)
+amount = 4000
+process_material = SubResource("ParticleProcessMaterial_rolhx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
