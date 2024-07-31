@@ -43,6 +43,7 @@ func continue_game():
 
 func game_over():
 	death.show()
+	game.remove_spawned()
 
 func change_window_size(temp_size):
 	var wsize =temp_size #Vector2i(width,height)

@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjcgxpc82dnio"]
+
+[ext_resource type="Script" path="res://shadow_game/src/fireball.gd" id="1_biubt"]
+[ext_resource type="Texture2D" uid="uid://sxpjcn8ck0vr" path="res://shadow_game/art/fireball.png" id="1_ps2p5"]
+[ext_resource type="Texture2D" uid="uid://ckya5bd63o4sj" path="res://shadow_game/art/light.png" id="2_5d757"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dhnyj"]
+radius = 30.1496
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wvl35"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 10, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+
+[node name="Fireball" type="Area2D" groups=["light"]]
+script = ExtResource("1_biubt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ps2p5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(5, -2)
+texture = ExtResource("2_5d757")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, -3)
+shape = SubResource("CircleShape2D_dhnyj")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 0.415686, 0, 1)
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-10, -2)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_wvl35")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

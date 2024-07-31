@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://v6qlidi7r7hm"]
+
+[ext_resource type="Texture2D" uid="uid://dflkyeo823wuh" path="res://shadow_game/art/shadow.png" id="1_4gtdd"]
+[ext_resource type="Script" path="res://shadow_game/src/shadow.gd" id="1_kamy5"]
+[ext_resource type="Texture2D" uid="uid://ckya5bd63o4sj" path="res://shadow_game/art/light.png" id="2_fmqh1"]
+[ext_resource type="Script" path="res://shadow_game/src/Area2D.gd" id="4_45ppp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0cr6"]
+size = Vector2(14.6875, 3)
+
+[sub_resource type="Animation" id="Animation_ilky2"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_p3d16"]
+resource_name = "run"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j1s0i"]
+_data = {
+"idle": SubResource("Animation_ilky2"),
+"run": SubResource("Animation_p3d16")
+}
+
+[node name="Shadow" type="CharacterBody2D" node_paths=PackedStringArray("animation_player")]
+y_sort_enabled = true
+script = ExtResource("1_kamy5")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+visible = false
+texture = ExtResource("2_fmqh1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o0cr6")
+
+[node name="Direction" type="Node2D" parent="."]
+position = Vector2(1, -9)
+
+[node name="Sprite2D" type="Sprite2D" parent="Direction"]
+position = Vector2(0, -1)
+texture = ExtResource("1_4gtdd")
+offset = Vector2(-10, -2)
+
+[node name="PointLight2D" type="PointLight2D" parent="Direction"]
+y_sort_enabled = true
+position = Vector2(5, -9)
+color = Color(1, 0, 0, 1)
+energy = 20.0
+texture = ExtResource("2_fmqh1")
+texture_scale = 0.02
+
+[node name="PointLight2D2" type="PointLight2D" parent="Direction"]
+y_sort_enabled = true
+position = Vector2(-3, -8)
+color = Color(1, 0, 0, 1)
+energy = 10.0
+texture = ExtResource("2_fmqh1")
+texture_scale = 0.02
+
+[node name="Area2D" type="Area2D" parent="Direction" node_paths=PackedStringArray("shadow") groups=["shadow"]]
+script = ExtResource("4_45ppp")
+shadow = NodePath("../..")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Direction/Area2D"]
+visible = false
+polygon = PackedVector2Array(-27, 8, -6, -15, 3, -17, 10, -13, 11, -4, 11, 5, 10, 8, 8, 10, 3, 12, -24, 12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j1s0i")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 100.0
+autostart = true
+
+[connection signal="area_entered" from="Direction/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Direction/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

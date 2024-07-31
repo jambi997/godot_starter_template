@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkx08pgy88k3e"]
+
+[ext_resource type="Script" path="res://shadow_game/src/fire_trail.gd" id="1_56vnd"]
+[ext_resource type="Texture2D" uid="uid://bc6fqg1sa856l" path="res://shadow_game/art/fire_trail.png" id="2_grkyd"]
+[ext_resource type="Texture2D" uid="uid://ckya5bd63o4sj" path="res://shadow_game/art/light.png" id="2_uqbij"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s6mwh"]
+radius = 27.8568
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ja25u"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 10, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -50, 0)
+scale_max = 2.0
+
+[node name="FireTrail" type="Area2D" groups=["light"]]
+script = ExtResource("1_56vnd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s6mwh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_grkyd")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_uqbij")
+texture_scale = 1.3
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+modulate = Color(1, 0.415686, 0, 1)
+z_index = -1
+y_sort_enabled = true
+position = Vector2(1, 6)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_ja25u")
+lifetime = 2.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
